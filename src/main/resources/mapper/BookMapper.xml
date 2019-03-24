@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.store.dao.BookDao" >
+  <resultMap id="BaseResultMap" type="com.wang.store.entity.Book" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
+  </resultMap>
+
+
+  <select id="FindBookById" parameterType="Integer" resultType="com.wang.store.entity.Book">
+  select *
+  from Book
+  where id=#{id}
+  </select>
+
+  <select id="FindBookByName" parameterType="String" resultType="com.wang.store.entity.Book">
+  select *
+  from Book
+  where name like "%"#{name}"%"
+  </select>
+
+
+  <select id="FindBookByType" parameterType="String" resultType="com.wang.store.entity.Book">
+  select *
+  from Book
+  where type=#{type}
+  </select>
+
+ <!-- <select id="FindByKeyword" parameterType="String" resultType="com.example.demo.entity.Mineral">
+  select *
+  from Mineral
+  where name like "%"#{keyword}"%"
+  or axiality like "%"#{keyword}"%"
+  or type like "%"#{keyword}"%"
+  or form like "%"#{keyword}"%"
+  or handspecolor like "%"#{keyword}"%"
+  or slicecolor like "%"#{keyword}"%"
+  or jieli like "%"#{keyword}"%"
+  or tuqi like "%"#{keyword}"%"
+  or colorganshe like "%"#{keyword}"%"
+  or xiaoguang like "%"#{keyword}"%"
+  or shuangjin like "%"#{keyword}"%"
+  or guangxing like "%"#{keyword}"%"
+
+  </select>
+  -->
+
+
+
+
+
+</mapper>
