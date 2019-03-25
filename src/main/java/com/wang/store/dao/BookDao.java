@@ -20,5 +20,7 @@ public interface BookDao {
 
     List<Book> FindBookByType(String type);
 
+    void InsertBook(Book book);
+
 
 }

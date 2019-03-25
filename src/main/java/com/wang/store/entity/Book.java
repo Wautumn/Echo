@@ -6,6 +6,8 @@ package com.wang.store.entity;
  */
 public class Book {
 
+
+
     private int id;
 
     private String name;
@@ -18,7 +20,9 @@ public class Book {
 
     private String author;
 
-    private int price;
+    private int preprice;
+
+    private int nowprice;
 
     private int stock;
 
@@ -70,12 +74,20 @@ public class Book {
         this.author = author;
     }
 
-    public int getPrice() {
-        return price;
+    public int getPreprice() {
+        return preprice;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPreprice(int preprice) {
+        this.preprice = preprice;
+    }
+
+    public int getNowprice() {
+        return nowprice;
+    }
+
+    public void setNowprice(int nowprice) {
+        this.nowprice = nowprice;
     }
 
     public int getStock() {
@@ -85,4 +97,6 @@ public class Book {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+
 }

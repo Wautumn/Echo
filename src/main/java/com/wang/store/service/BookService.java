@@ -37,4 +37,8 @@ public class BookService {
     public List FindBookByType(String type){
         return bookDao.FindBookByType(type);
     }
+
+    public void InsertBook(Book book){
+        bookDao.InsertBook(book);
+    }
 }
