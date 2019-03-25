@@ -24,7 +24,7 @@ public class GetInforTest {
     public void GetInformation(){
        try {
            Document document = Jsoup.connect("https://book.douban.com/subject/4913064/").get();
-           informationService.GetDetail(document);
+          // informationService.GetDetail(document);
 
        }catch (Exception e){
            e.printStackTrace();
@@ -33,7 +33,7 @@ public class GetInforTest {
 
     @Test
     public void GetType(){
-        informationService.GetType("武侠");
+        //informationService.GetType("武侠");
     }
 
 
