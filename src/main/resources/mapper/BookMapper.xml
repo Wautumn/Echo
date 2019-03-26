@@ -11,6 +11,7 @@
     <result column="preprice" property="preprice" jdbcType="INTEGER" />
     <result column="nowprice" property="nowprice" jdbcType="INTEGER" />
     <result column="stock" property="stock" jdbcType="INTEGER" />
+    <result column="monthsales" property="monthsales" jdbcType="INTEGER" />
   </resultMap>
 
 
@@ -20,12 +21,16 @@
   where id=#{id}
   </select>
 
+  <select id="GetAllBook" resultType="com.wang.store.entity.Book">
+    select *
+    from Book
+  </select>
+
   <select id="FindBookByName" parameterType="String" resultType="com.wang.store.entity.Book">
   select *
   from Book
   where name like "%"#{name}"%"
   </select>
-
 
   <select id="FindBookByType" parameterType="String" resultType="com.wang.store.entity.Book">
   select *
@@ -33,10 +38,42 @@
   where type like "%"#{type}"%"
   </select>
 
+  <select id="GetHotBook" resultType="com.wang.store.entity.Book">
+    select *
+    from Book
+    where monthsales>0;
+  </select>
+
+  <select id="GetDiscountBook" resultType="com.wang.store.entity.Book">
+    select *
+    from Book
+    where nowprice &lt; preprice
+  </select>
+
   <insert id="InsertBook" parameterType="com.wang.store.entity.Book">
     insert into Book(name,type,picture,introduction,author,preprice,nowprice,stock)
     values (#{name},#{type},#{picture},#{introduction},#{author},#{preprice},#{nowprice},#{stock})
   </insert>
+
+  <update id="UpdateBookStock" >
+    update Book
+    set stock=#{stock}
+    where id=#{id}
+  </update>
+
+  <update id="UpdateBookPrePrice">
+    update Book
+    set preprice=nowprice
+    where id=#{id}
+  </update>
+
+  <update id="UpdateBookPrice">
+    update Book
+    set
+      nowprice=#{price}
+    where id=#{id}
+  </update>
+
 
 
 

@@ -16,11 +16,26 @@ public interface BookDao {
 
     Book FindBookById(int id);
 
+    List<Book> GetAllBook();
+
     List<Book> FindBookByName(String name);
 
     List<Book> FindBookByType(String type);
 
+    List<Book> GetHotBook();
+
+    List<Book> GetDiscountBook();
+
     void InsertBook(Book book);
+
+    void UpdateBookStock(int id,int stock);
+
+    void UpdateBookPrePrice(int id);
+
+    void UpdateBookPrice(int id,int price);
+
+
+
 
 
 }

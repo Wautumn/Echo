@@ -26,6 +26,8 @@ public class Book {
 
     private int stock;
 
+    private int monthsales;
+
     public int getId() {
         return id;
     }
@@ -98,5 +100,11 @@ public class Book {
         this.stock = stock;
     }
 
+    public int getMonthsales() {
+        return monthsales;
+    }
 
+    public void setMonthsales(int monthsales) {
+        this.monthsales = monthsales;
+    }
 }

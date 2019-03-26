@@ -39,6 +39,26 @@ public class BookController {
         return bookService.FindBookByType(type);
     }
 
+    @RequestMapping(value = "/getHotBooks",method = RequestMethod.GET)
+    public List<Book> GetHotBooks(){
+        return bookService.GetHotBook();
+    }
+
+    @RequestMapping(value = "/getDiscountBooks",method = RequestMethod.GET)
+    public List<Book> GetDiscountBooks(){
+        return bookService.GetDiscountBook();
+    }
+
+    @RequestMapping(value = "/getNewBooks",method = RequestMethod.GET)
+    public List<Book> GetNewBooks(){
+        return bookService.GetNewBook();
+    }
+
+    @RequestMapping(value = "/getCommonRecommendBooks",method = RequestMethod.GET)
+    public List<Book> GetCommonRecommendBooks(){
+        return bookService.GetCommonBook();
+    }
+
     @RequestMapping(value = "/insertBook",method = RequestMethod.POST)
     public int InsertBook(@RequestBody JSONObject jsonObject){
         Book book=new Book();
@@ -62,4 +82,18 @@ public class BookController {
         return 1;
 
     }
+
+    @RequestMapping(value = "/changeStock",method = RequestMethod.GET)
+    public String ChangeStock(int id,int stock){
+        bookService.UpdateBookStock(id,stock);
+        return "success";
+    }
+
+    @RequestMapping(value = "/changePrice",method = RequestMethod.GET)
+    public String ChangePrice(int id,int price){
+        bookService.UpdateBookPrice(id,price);
+        return "success";
+    }
+
+
 }
