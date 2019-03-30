@@ -55,6 +55,11 @@
     values (#{name},#{type},#{picture},#{introduction},#{author},#{preprice},#{nowprice},#{stock})
   </insert>
 
+  <insert id="InsertAndGetId" useGeneratedKeys="true" keyProperty="id" parameterType="com.wang.store.entity.Book" >
+    insert into Book(name,type,picture,introduction,author,preprice,nowprice,stock)
+    values (#{name},#{type},#{picture},#{introduction},#{author},#{preprice},#{nowprice},#{stock})
+  </insert>
+
   <update id="UpdateBookStock" >
     update Book
     set stock=#{stock}

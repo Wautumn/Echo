@@ -126,6 +126,11 @@ public class BookService {
         bookDao.InsertBook(book);
     }
 
+    public int InsertAndGetId(Book book){
+        bookDao.InsertAndGetId(book);
+        return book.getId();
+    }
+
     public void UpdateBookStock(int id,int stock){
         bookDao.UpdateBookStock(id,stock);
     }

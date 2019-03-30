@@ -34,6 +34,8 @@ public interface BookDao {
 
     void UpdateBookPrice(int id,int price);
 
+    int InsertAndGetId(Book book);
+
 
 
 

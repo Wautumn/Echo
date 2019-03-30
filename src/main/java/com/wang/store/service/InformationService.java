@@ -48,7 +48,11 @@ public class InformationService {
 
             //图片
             String pic = doc.select("#mainpic").select("a").select("img").attr("src");
-            System.out.println(pic);
+            String pic2=pic.replace("https:","https://images.weserv.nl/?url=https:");
+            System.out.println(pic2);
+            //https://img3.doubanio.com/view/subject/l/public/s29960161.jpg
+            //https://images.weserv.nl/?url=https://img3.doubanio.com/view/subject/l/public/s28668834.jpg
+
 
             //作者
             String author = doc.select("#info").select("a").first().text();
@@ -65,9 +69,10 @@ public class InformationService {
             book.setName(name);
             book.setIntroduction(introduction);
             book.setAuthor(author);
-            book.setPicture(pic);
+            book.setPicture(pic2);
             book.setPreprice(100);
             book.setNowprice(100);
+            book.setMonthsales(100);
             book.setType(type);
 
         } catch (Exception e) {

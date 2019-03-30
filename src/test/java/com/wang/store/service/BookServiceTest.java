@@ -1,5 +1,7 @@
 package com.wang.store.service;
 
+import com.wang.store.dao.BookDao;
+import com.wang.store.entity.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class BookServiceTest {
     @Autowired
     BookService bookService;
+
+    @Autowired
+    BookDao bookDao;
 
     @Test
     public void UpdateStock(){
@@ -34,6 +39,14 @@ public class BookServiceTest {
     @Test
     public void GetDiscountBook(){
         bookService.GetDiscountBook();
+    }
+
+    @Test
+    public void insert(){
+        Book book=new Book();
+        book.setName("测试");
+        bookDao.InsertAndGetId(book);
+        System.out.println(book.getId());
     }
 
 
