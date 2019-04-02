@@ -23,8 +23,8 @@ public class GetInforTest {
     @Test
     public void GetInformation(){
        try {
-           Document document = Jsoup.connect("https://book.douban.com/subject/4913064/").get();
-          // informationService.GetDetail(document);
+
+        //   informationService.GetDetail();
 
        }catch (Exception e){
            e.printStackTrace();
@@ -33,7 +33,8 @@ public class GetInforTest {
 
     @Test
     public void GetType(){
-      /*  informationService.GetType("小说");
+      //  informationService.GetType("小说");
+
         informationService.GetType("散文");
         informationService.GetType("文学");
         informationService.GetType("诗歌");
@@ -55,10 +56,11 @@ public class GetInforTest {
         informationService.GetType("励志");
         informationService.GetType("生活");
         informationService.GetType("游记");
-        informationService.GetType("健康");*/
+        informationService.GetType("健康");
 
         informationService.GetType("悬疑");
         informationService.GetType("思想");
+
 
 
 

@@ -6,27 +6,24 @@ package com.wang.store.entity;
  */
 public class Book {
 
-
-
     private int id;
-
     private String name;
-
-    private String type;
-
-    private String picture;
-
-    private String introduction;
-
     private String author;
-
-    private int preprice;
-
-    private int nowprice;
-
+    private String picture;
+    private String type;
+    private String introduction;
+    private String preprice;
+    private String nowprice;
     private int stock;
-
     private int monthsales;
+    private String subtitle;
+    private String page;
+    private String press;
+    private String presstime;
+    private String isbn;
+    private String authorcontent;
+    private String catelog;
+
 
     public int getId() {
         return id;
@@ -76,19 +73,19 @@ public class Book {
         this.author = author;
     }
 
-    public int getPreprice() {
+    public String getPreprice() {
         return preprice;
     }
 
-    public void setPreprice(int preprice) {
+    public void setPreprice(String preprice) {
         this.preprice = preprice;
     }
 
-    public int getNowprice() {
+    public String getNowprice() {
         return nowprice;
     }
 
-    public void setNowprice(int nowprice) {
+    public void setNowprice(String nowprice) {
         this.nowprice = nowprice;
     }
 
@@ -106,5 +103,61 @@ public class Book {
 
     public void setMonthsales(int monthsales) {
         this.monthsales = monthsales;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+    public String getPress() {
+        return press;
+    }
+
+    public void setPress(String press) {
+        this.press = press;
+    }
+
+    public String getPresstime() {
+        return presstime;
+    }
+
+    public void setPresstime(String presstime) {
+        this.presstime = presstime;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getAuthorcontent() {
+        return authorcontent;
+    }
+
+    public void setAuthorcontent(String authorcontent) {
+        this.authorcontent = authorcontent;
+    }
+
+    public String getCatelog() {
+        return catelog;
+    }
+
+    public void setCatelog(String catelog) {
+        this.catelog = catelog;
     }
 }

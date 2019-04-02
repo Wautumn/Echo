@@ -67,7 +67,7 @@ public class BookController {
         String picture=jsonObject.get("picture").toString();
         String introduction=jsonObject.get("introduction").toString();
         String author=jsonObject.get("author").toString();
-        int price=(int)Integer.parseInt(jsonObject.get("price").toString());
+        String price=jsonObject.get("price").toString();
         int stock=(int)Integer.parseInt(jsonObject.get("stock").toString());
         book.setName(name);
         book.setType(type);

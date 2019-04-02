@@ -4,14 +4,22 @@
   <resultMap id="BaseResultMap" type="com.wang.store.entity.Book" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="picture" property="picture" jdbcType="VARCHAR" />
-    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
-    <result column="preprice" property="preprice" jdbcType="INTEGER" />
-    <result column="nowprice" property="nowprice" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="preprice" property="preprice" jdbcType="VARCHAR" />
+    <result column="nowprice" property="nowprice" jdbcType="VARCHAR" />
     <result column="stock" property="stock" jdbcType="INTEGER" />
     <result column="monthsales" property="monthsales" jdbcType="INTEGER" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+    <result column="page" property="page" jdbcType="VARCHAR" />
+    <result column="press" property="press" jdbcType="VARCHAR" />
+    <result column="presstime" property="presstime" jdbcType="VARCHAR" />
+    <result column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="authorcontent" property="authorcontent" jdbcType="VARCHAR" />
+    <result column="catelog" property="catelog" jdbcType="VARCHAR" />
+
   </resultMap>
 
 
@@ -51,8 +59,12 @@
   </select>
 
   <insert id="InsertBook" parameterType="com.wang.store.entity.Book">
-    insert into Book(name,type,picture,introduction,author,preprice,nowprice,stock)
-    values (#{name},#{type},#{picture},#{introduction},#{author},#{preprice},#{nowprice},#{stock})
+    insert into Book(name,type,picture,introduction,
+    author,preprice,nowprice,stock,monthsales,subtitle,
+    page,press,presstime,isbn,authorcontent,catelog)
+    values (#{name},#{type},#{picture},#{introduction},
+    #{author},#{preprice},#{nowprice},#{stock},#{monthsales},#{subtitle},
+    #{page},#{press},#{presstime},#{isbn},#{authorcontent},#{catelog})
   </insert>
 
   <insert id="InsertAndGetId" useGeneratedKeys="true" keyProperty="id" parameterType="com.wang.store.entity.Book" >

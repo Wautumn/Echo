@@ -92,10 +92,13 @@ public class BookService {
 
     }
 
-    private static float DiscountDegree(Book book){
+    private static int DiscountDegree(Book book){
         //System.out.println(book.getPreprice());
         //System.out.println(book.getNowprice());
-        return 100*(book.getPreprice()-book.getNowprice())/book.getPreprice();
+        Integer pri1=Integer.parseInt(book.getPreprice());
+        Integer pri2=Integer.parseInt(book.getNowprice());
+
+        return 100*(pri1-pri2)/pri1;
     }
 
     public List<Book> GetNewBook(){
