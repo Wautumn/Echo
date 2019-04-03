@@ -28,15 +28,40 @@ public class BookController {
     }
 
     @RequestMapping(value = "/getBookByName",method = RequestMethod.GET)
-    public List<Book> GetBookByName(String name){
-        List<Book> books=new LinkedList<>();
-        books= bookService.FindBookByName(name);
-        return books;
+    public List<Book> GetBookByName(String name,int page){
+        List books=bookService.FindBookByName(name);
+        int sumpage=books.size()/8+1;
+       /* System.out.println(books.subList(0,8).size());
+        System.out.println(books.subList(8,14).size());*/
+        List result=new LinkedList();
+        if((page*8)<books.size()) {
+            result.addAll(books.subList((page - 1) * 8, (page * 8)));
+
+        }else {
+            result.addAll(books.subList((page - 1) * 8, books.size() ));
+            // System.out.println((books.subList((page - 1) * 8, books.size())).size());
+        }
+        result.add(sumpage);
+        return result;
     }
 
     @RequestMapping(value = "/getBookByType",method = RequestMethod.GET)
-    public List<Book> GetBookByType(String type){
-        return bookService.FindBookByType(type);
+    public List<Book> GetBookByType(String type,int page){
+        List books=bookService.FindBookByType(type);
+        System.out.println(books.size());
+        int sumpage=books.size()/8+1;
+       /* System.out.println(books.subList(0,8).size());
+        System.out.println(books.subList(8,14).size());*/
+        List result=new LinkedList();
+        if((page*8)<books.size()) {
+            result.addAll(books.subList((page - 1) * 8, (page * 8)));
+
+        }else {
+            result.addAll(books.subList((page - 1) * 8, books.size() ));
+           // System.out.println((books.subList((page - 1) * 8, books.size())).size());
+        }
+        result.add(sumpage);
+        return result;
     }
 
     @RequestMapping(value = "/getHotBooks",method = RequestMethod.GET)
@@ -45,8 +70,22 @@ public class BookController {
     }
 
     @RequestMapping(value = "/getDiscountBooks",method = RequestMethod.GET)
-    public List<Book> GetDiscountBooks(){
-        return bookService.GetDiscountBook();
+    public List GetDiscountBooks(int page){
+        List<Book> alldiscountbooks=bookService.GetDiscountBook();
+        int sumpage=alldiscountbooks.size()/8+1;//页数
+        List results=new LinkedList();
+        List<Book> discountbooks=alldiscountbooks.subList((page-1)*8,page*8);
+        if((page*8)<alldiscountbooks.size()) {
+            results.addAll(alldiscountbooks.subList((page - 1) * 8, (page * 8)));
+            System.out.println(alldiscountbooks.subList((page - 1) * 8, (page * 8)).size());
+
+        }else {
+            results.addAll(alldiscountbooks.subList((page - 1) * 8, alldiscountbooks.size() ));
+            // System.out.println((books.subList((page - 1) * 8, books.size())).size());
+        }
+
+        results.add(sumpage);
+        return results;
     }
 
     @RequestMapping(value = "/getNewBooks",method = RequestMethod.GET)
@@ -59,41 +98,7 @@ public class BookController {
         return bookService.GetCommonBook();
     }
 
-    @RequestMapping(value = "/insertBook",method = RequestMethod.POST)
-    public int InsertBook(@RequestBody JSONObject jsonObject){
-        Book book=new Book();
-        String name=jsonObject.get("name").toString();
-        String type=jsonObject.get("type").toString();
-        String picture=jsonObject.get("picture").toString();
-        String introduction=jsonObject.get("introduction").toString();
-        String author=jsonObject.get("author").toString();
-        String price=jsonObject.get("price").toString();
-        int stock=(int)Integer.parseInt(jsonObject.get("stock").toString());
-        book.setName(name);
-        book.setType(type);
-        book.setPicture(picture);
-        book.setIntroduction(introduction);
-        book.setAuthor(author);
-        book.setNowprice(price);
-        book.setPreprice(price);
-        book.setStock(stock);
 
-        bookService.InsertBook(book);
-        return 1;
-
-    }
-
-    @RequestMapping(value = "/changeStock",method = RequestMethod.GET)
-    public String ChangeStock(int id,int stock){
-        bookService.UpdateBookStock(id,stock);
-        return "success";
-    }
-
-    @RequestMapping(value = "/changePrice",method = RequestMethod.GET)
-    public String ChangePrice(int id,int price){
-        bookService.UpdateBookPrice(id,price);
-        return "success";
-    }
 
 
 }

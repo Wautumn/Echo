@@ -33,7 +33,7 @@ public class GetInforTest {
 
     @Test
     public void GetType(){
-      //  informationService.GetType("小说");
+        informationService.GetType("小说");
 
         informationService.GetType("散文");
         informationService.GetType("文学");

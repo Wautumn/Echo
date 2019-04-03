@@ -47,7 +47,6 @@ public class BookService {
 
     public List<Book> GetHotBook(){
         List<Book> books=bookDao.GetHotBook();
-       // System.out.println(books.size());
         Queue<Book> customerPriorityQueue = new PriorityQueue<Book>(books.size(), SaleComparator);
         for(int i=0;i<books.size();i++){
            customerPriorityQueue.add(books.get(i));
@@ -78,26 +77,25 @@ public class BookService {
         }
         List<Book> resultbooks=new LinkedList<>();
 
-        //默认队列大小大于10
-        for(int i=0;i<8;i++){
+
+        for(int i=0;i<books.size();i++){
             //System.out.println(DiscountDegree(customerPriorityQueue.peek()));
-            resultbooks.add(i,customerPriorityQueue.remove());
+            resultbooks.add(i,customerPriorityQueue.remove());//反着加进去的，折扣最大的在最后
 
         }
         List<Book> reverse=new LinkedList<>();
-        for (int i=0;i<8;i++){
-            reverse.add(resultbooks.get(7-i));
+        for (int i=0;i<books.size();i++){
+            reverse.add(resultbooks.get(books.size()-1-i));
         }
         return reverse;
 
     }
 
-    private static int DiscountDegree(Book book){
+    private static Double DiscountDegree(Book book){
         //System.out.println(book.getPreprice());
         //System.out.println(book.getNowprice());
-        Integer pri1=Integer.parseInt(book.getPreprice());
-        Integer pri2=Integer.parseInt(book.getNowprice());
-
+        Double pri1=Double.parseDouble(book.getPreprice());
+        Double pri2=Double.parseDouble(book.getNowprice());
         return 100*(pri1-pri2)/pri1;
     }
 
@@ -109,7 +107,7 @@ public class BookService {
             hashSet.add(books.get(random.nextInt(books.size()) ));
         }
         List<Book> newbooks=new LinkedList<>(hashSet);
-        System.out.println(newbooks.size());
+       // System.out.println(newbooks.size());
         return newbooks;
     }
 
@@ -125,23 +123,7 @@ public class BookService {
         return newbooks;
     }
 
-    public void InsertBook(Book book){
-        bookDao.InsertBook(book);
-    }
 
-    public int InsertAndGetId(Book book){
-        bookDao.InsertAndGetId(book);
-        return book.getId();
-    }
-
-    public void UpdateBookStock(int id,int stock){
-        bookDao.UpdateBookStock(id,stock);
-    }
-
-    public void UpdateBookPrice(int id,int price){
-        bookDao.UpdateBookPrePrice(id);
-        bookDao.UpdateBookPrice(id,price);
-    }
 
 
 }

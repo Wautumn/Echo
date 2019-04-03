@@ -18,18 +18,11 @@ public class BookServiceTest {
     @Autowired
     BookService bookService;
 
+
+
     @Autowired
     BookDao bookDao;
 
-    @Test
-    public void UpdateStock(){
-        bookService.UpdateBookStock(1,400);
-    }
-
-    @Test
-    public void UpdatePrice(){
-        bookService.UpdateBookPrice(1,400);
-    }
 
     @Test
     public void GetHotBook(){

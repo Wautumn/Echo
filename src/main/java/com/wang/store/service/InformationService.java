@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 @Service
 public class InformationService {
     @Autowired
-    BookService bookService;
+    AdminService adminService;
 
     private String type;
 
@@ -56,8 +56,7 @@ public class InformationService {
 
             Document doc = Jsoup.connect(url)
                     .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36")
-                    .timeout(2000)
-                    .post();
+                    .get();
 
             //书名
             String name = doc.select("#wrapper").select("h1").select("span").text();
@@ -134,8 +133,8 @@ public class InformationService {
             book.setAuthor(author);
             book.setType(type);
             book.setIntroduction(content);
-            book.setPreprice(price);
-            book.setNowprice(price);
+            book.setPreprice(price.replace("元",""));
+            book.setNowprice(price.replace("元",""));
             book.setStock(100);
             book.setMonthsales(50);
             book.setSubtitle(subtitle);
@@ -152,7 +151,7 @@ public class InformationService {
 
 
 
-        bookService.InsertBook(book);
+        adminService.InsertBook(book);
 
     }
 }
