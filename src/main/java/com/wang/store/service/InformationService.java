@@ -29,11 +29,12 @@ public class InformationService {
     public void GetType(String type) {
         this.type = type;
         try {
-            Document document = Jsoup.connect("https://book.douban.com/tag/" + type).get();
+            Document document = Jsoup.connect("https://book.douban.com/tag/" + type+"?start=40&type=T").get();
             Elements linkelements = document.select("#subject_list").select("ul").select("li");
-            System.out.println(linkelements.size());
+            //System.out.println(linkelements.size());
             for (int i = 0; i < linkelements.size(); i++) {
-                String url = linkelements.get(i).select("h2").select("a").attr("href");
+               // System.out.println(linkelements.get(i).text());
+                String url = linkelements.get(i).select(".info").select("h2").select("a").attr("href");
                 GetDetail(type,url);
             }
 
@@ -54,9 +55,7 @@ public class InformationService {
             String number=m.replaceAll("").trim();
             System.out.println(number);
 
-            Document doc = Jsoup.connect(url)
-                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36")
-                    .get();
+            Document doc = Jsoup.connect(url).get();
 
             //书名
             String name = doc.select("#wrapper").select("h1").select("span").text();

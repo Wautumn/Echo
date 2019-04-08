@@ -23,6 +23,6 @@ public class AdminServiceTest {
 
     @Test
     public void UpdatePrice(){
-        adminService.UpdateBookPrice(1,400);
+        adminService.UpdateBookPrice(1,"400");
     }
 }

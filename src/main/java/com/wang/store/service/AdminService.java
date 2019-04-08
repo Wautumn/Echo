@@ -28,7 +28,7 @@ public class AdminService {
         bookDao.UpdateBookStock(id,stock);
     }
 
-    public void UpdateBookPrice(int id,int price){
+    public void UpdateBookPrice(int id,String price){
         bookDao.UpdateBookPrePrice(id);
         bookDao.UpdateBookPrice(id,price);
     }

@@ -95,4 +95,11 @@
     where id=#{id}
   </update>
 
+  <update id="UpdateMonthsales">
+    update Book
+    set
+      monthsales=#{monthsales}
+    where id=#{id}
+  </update>
+
 </mapper>

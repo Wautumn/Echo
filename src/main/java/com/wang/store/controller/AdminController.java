@@ -36,6 +36,8 @@ public class AdminController {
         String authorcontent=jsonObject.get("authorcontent").toString();
         String catelog=jsonObject.get("catelog").toString();
 
+        picture.replace("https","https://images.weserv.nl/?url=https");
+
         book.setName(name);
         book.setAuthor(author);
         book.setPicture(picture);
@@ -64,7 +66,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/changePrice",method = RequestMethod.GET)
-    public String ChangePrice(int id,int price){
+    public String ChangePrice(int id,String price){
         adminService.UpdateBookPrice(id,price);
         return "success";
     }

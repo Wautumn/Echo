@@ -32,7 +32,9 @@ public interface BookDao {
 
     void UpdateBookPrePrice(int id);
 
-    void UpdateBookPrice(int id,int price);
+    void UpdateBookPrice(int id,String price);
+
+    void UpdateMonthsales(int id,int monthsales);
 
     int InsertAndGetId(Book book);
 
