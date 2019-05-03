@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.store.dao.CartDao">
+    <resultMap id="BaseResultMap" type="com.wang.store.entity.Cart">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="bookid" property="bookid" jdbcType="INTEGER"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+
+    </resultMap>
+
+
+    <insert id="AddBookToCart" useGeneratedKeys="true" keyProperty="id" parameterType="com.wang.store.entity.Cart">
+    insert into cart(userid,bookid,num)
+    values (#{userid},#{bookid},#{num})
+  </insert>
+
+    <select id="GetCartByUserid" parameterType="Integer" resultType="com.wang.store.entity.Cart">
+    select *
+    from cart
+    where userid=#{userid};
+  </select>
+
+    <select id="IfExistCart" resultType="com.wang.store.entity.Cart" parameterType="com.wang.store.entity.Cart">
+        select *
+        from cart
+        where userid=#{userid} and bookid=#{bookid}
+    </select>
+
+
+    <update id="UpdateCart" parameterType="com.wang.store.entity.Cart">
+        update cart
+        set num=num+#{num}
+        where userid=#{userid} and bookid=#{bookid}
+    </update>
+
+    <!--<select id="FindBookById" parameterType="Integer" resultType="com.wang.store.entity.Book">-->
+    <!--select *-->
+    <!--from Book-->
+    <!--where id=#{id}-->
+    <!--</select>-->
+
+    <!--<select id="GetAllBook" resultType="com.wang.store.entity.Book">-->
+    <!--select *-->
+    <!--from Book-->
+    <!--</select>-->
+
+    <!--<select id="FindBookByName" parameterType="String" resultType="com.wang.store.entity.Book">-->
+    <!--select *-->
+    <!--from Book-->
+    <!--where name like "%"#{name}"%"-->
+    <!--</select>-->
+
+    <!--<select id="FindBookByType" parameterType="String" resultType="com.wang.store.entity.Book">-->
+    <!--select *-->
+    <!--from Book-->
+    <!--where type like "%"#{type}"%"-->
+    <!--</select>-->
+
+    <!--<select id="GetHotBook" resultType="com.wang.store.entity.Book">-->
+    <!--select *-->
+    <!--from Book-->
+    <!--where monthsales>0;-->
+    <!--</select>-->
+
+    <!--<select id="GetDiscountBook" resultType="com.wang.store.entity.Book">-->
+    <!--select *-->
+    <!--from Book-->
+    <!--where nowprice &lt; preprice-->
+    <!--</select>-->
+
+    <!--<insert id="InsertBook" parameterType="com.wang.store.entity.Book">-->
+    <!--insert into Book(name,type,picture,introduction,-->
+    <!--author,preprice,nowprice,stock,monthsales,subtitle,-->
+    <!--page,press,presstime,isbn,authorcontent,catelog)-->
+    <!--values (#{name},#{type},#{picture},#{introduction},-->
+    <!--#{author},#{preprice},#{nowprice},#{stock},#{monthsales},#{subtitle},-->
+    <!--#{page},#{press},#{presstime},#{isbn},#{authorcontent},#{catelog})-->
+    <!--</insert>-->
+
+    <!--<insert id="InsertAndGetId" useGeneratedKeys="true" keyProperty="id" parameterType="com.wang.store.entity.Book" >-->
+    <!--insert into Book(name,type,picture,introduction,-->
+    <!--author,preprice,nowprice,stock,monthsales,subtitle,-->
+    <!--page,press,presstime,isbn,authorcontent,catelog)-->
+    <!--values (#{name},#{type},#{picture},#{introduction},-->
+    <!--#{author},#{preprice},#{nowprice},#{stock},#{monthsales},#{subtitle},-->
+    <!--#{page},#{press},#{presstime},#{isbn},#{authorcontent},#{catelog})-->
+    <!--</insert>-->
+
+    <!--<update id="UpdateBookStock" >-->
+    <!--update Book-->
+    <!--set stock=#{stock}-->
+    <!--where id=#{id}-->
+    <!--</update>-->
+
+    <!--<update id="UpdateBookPrePrice">-->
+    <!--update Book-->
+    <!--set preprice=nowprice-->
+    <!--where id=#{id}-->
+    <!--</update>-->
+
+    <!--<update id="UpdateBookPrice">-->
+    <!--update Book-->
+    <!--set-->
+    <!--nowprice=#{price}-->
+    <!--where id=#{id}-->
+    <!--</update>-->
+
+    <!--<update id="UpdateMonthsales">-->
+    <!--update Book-->
+    <!--set-->
+    <!--monthsales=#{monthsales}-->
+    <!--where id=#{id}-->
+    <!--</update>-->
+
+</mapper>
