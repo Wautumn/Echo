@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.store.dao.AddressDao">
+    <resultMap id="BaseResultMap" type="com.wang.store.entity.Address">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+
+
+    </resultMap>
+
+    <select id="GetAddressById" parameterType="Integer" resultType="com.wang.store.entity.Address">
+    select *
+    from Address
+    where id=#{id};
+  </select>
+
+    <insert id="AddAddress" useGeneratedKeys="true" keyProperty="id" parameterType="com.wang.store.entity.Address">
+    insert into Address(userid,name,phone,province,city,district,detail)
+    values (#{userid},#{name},#{phone},#{province},#{city},#{district},#{detail})
+  </insert>
+
+    <select id="GetAddressByUserid" parameterType="Integer" resultType="com.wang.store.entity.Address">
+    select *
+    from Address
+    where userid=#{userid};
+  </select>
+
+    <delete id="DeleteAddress" parameterType="Integer">
+        delete
+        from Address
+        where id=#{id}
+    </delete>
+
+
+    <update id="UpdateAddress" parameterType="com.wang.store.entity.Address">
+        update Address
+        set name=#{name}
+        , phone=#{phone}
+        , province=#{province}
+        , city=#{city}
+        , district=#{district}
+        , detail=#{detail}
+        where userid=#{userid} and id=#{id}
+    </update>
+
+
+</mapper>
