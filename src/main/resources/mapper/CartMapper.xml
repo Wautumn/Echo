@@ -21,6 +21,12 @@
     where userid=#{userid};
   </select>
 
+    <select id="GetCartById" parameterType="Integer" resultType="com.wang.store.entity.Cart">
+        select *
+        from cart
+        where id=#{id}
+    </select>
+
     <select id="IfExistCart" resultType="com.wang.store.entity.Cart" parameterType="com.wang.store.entity.Cart">
         select *
         from cart
@@ -33,6 +39,12 @@
         set num=num+#{num}
         where userid=#{userid} and bookid=#{bookid}
     </update>
+
+    <delete id="DeleteCart" parameterType="Integer">
+        delete
+        from cart
+        where id=#{id}
+    </delete>
 
     <!--<select id="FindBookById" parameterType="Integer" resultType="com.wang.store.entity.Book">-->
     <!--select *-->

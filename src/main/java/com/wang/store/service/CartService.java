@@ -4,6 +4,7 @@ import com.wang.store.dao.BookDao;
 import com.wang.store.dao.CartDao;
 import com.wang.store.entity.Book;
 import com.wang.store.entity.Cart;
+import com.wang.store.entity.util.CartInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,26 +33,7 @@ public class CartService {
 
     }
 
-    class CartInfo {
-        private Book book;
-        private int num;
 
-        public Book getBook() {
-            return book;
-        }
-
-        public void setBook(Book book) {
-            this.book = book;
-        }
-
-        public int getNum() {
-            return num;
-        }
-
-        public void setNum(int num) {
-            this.num = num;
-        }
-    }
 
 
     //获取用户的购物车信息

@@ -1,5 +1,6 @@
 package com.wang.store.service;
 
+import com.wang.store.entity.util.CartInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class CartServiceTest {
 
     @Test
     public void getCartByUser(){
-        List<CartService.CartInfo> list=cartService.GetCartInfor(1);
+        List<CartInfo> list=cartService.GetCartInfor(1);
         System.out.println(list.size());
-        for(CartService.CartInfo cartInfo:list){
+        for(CartInfo cartInfo:list){
             System.out.println(cartInfo.getBook().getName());
         }
     }

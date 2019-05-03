@@ -1,13 +1,14 @@
-package com.wang.store.entity;
+package com.wang.store.entity.util;
+
+import com.wang.store.entity.Address;
 
 import java.util.List;
 
 /**
  * @Author: WHQ
- * @Date: 2019/3/24 15:37
+ * @Date: 2019/5/3 17:18
  */
-public class Order {
-
+public class UserOrder {
     private int id;
 
     private int userid;
@@ -16,10 +17,11 @@ public class Order {
 
     private int state;//订单状态，0为未支付，1为已支付，2为已完成
 
-    private int addressid;
+    private Address address;
 
     private float price;
 
+    private List<CartInfo> cartInfos;
 
     public int getId() {
         return id;
@@ -28,7 +30,6 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getUserid() {
         return userid;
@@ -54,12 +55,12 @@ public class Order {
         this.state = state;
     }
 
-    public int getAddressid() {
-        return addressid;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressid(int addressid) {
-        this.addressid = addressid;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public float getPrice() {
@@ -68,5 +69,13 @@ public class Order {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public List<CartInfo> getCartInfos() {
+        return cartInfos;
+    }
+
+    public void setCartInfos(List<CartInfo> cartInfos) {
+        this.cartInfos = cartInfos;
     }
 }

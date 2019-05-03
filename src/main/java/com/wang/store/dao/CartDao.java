@@ -18,11 +18,13 @@ public interface CartDao {
 
     List<Cart> GetCartByUserid(int userid);
 
+    Cart GetCartById(int id);
+
     Cart IfExistCart(Cart cart);//当前用户购物车是否已经存在此书
 
     void UpdateCart(Cart cart);//修改购物车商品数量
 
     void CleanCart(int userid);
 
-    void DeleteBookInCart(int bookid);
+    void DeleteCart(int id);//删除这条记录
 }
