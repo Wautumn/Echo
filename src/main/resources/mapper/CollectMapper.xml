@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.store.dao.CollectDao">
+    <resultMap id="BaseResultMap" type="com.wang.store.entity.Collect">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="bookid" property="bookid" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <insert id="AddCollect" useGeneratedKeys="true" keyProperty="id" parameterType="com.wang.store.entity.Collect">
+        insert into Collect(userid,bookid)
+        values (#{userid},#{bookid})
+  </insert>
+
+    <delete id="DeleteCollect" parameterType="Integer">
+        delete
+        from Collect
+        where id=#{id}
+    </delete>
+
+    <select id="GetCollectsByUser" parameterType="Integer" resultType="com.wang.store.entity.Collect">
+    select *
+    from Collect
+    where userid=#{userid};
+  </select>
+
+    <select id="IfCollected" parameterType="com.wang.store.entity.Collect" resultType="com.wang.store.entity.Collect" >
+        select *
+        from Collect
+        where userid=#{userid} and bookid=#{bookid}
+    </select>
+
+
+</mapper>
