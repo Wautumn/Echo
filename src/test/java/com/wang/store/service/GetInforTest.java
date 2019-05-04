@@ -35,7 +35,7 @@ public class GetInforTest {
     public void GetInformation(){
        try {
 
-        //   informationService.GetDetail();
+          informationService.GetDetail("s","https://book.douban.com/subject/5275059/");
 
        }catch (Exception e){
            e.printStackTrace();
@@ -44,6 +44,7 @@ public class GetInforTest {
 
     @Test
     public void GetType(){
+        //跑过了40和20
         informationService.GetType("小说");
         informationService.GetType("外国文学");
         informationService.GetType("文学");

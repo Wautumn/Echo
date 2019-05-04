@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,6 +21,8 @@ import java.util.List;
 public class CollectController {
     @Autowired
     CollectService collectService;
+
+    private HttpServletRequest request;
 
     @RequestMapping(value = "/addCollect", method = RequestMethod.POST)
     public int AddCollect(@RequestBody JSONObject jsonObject) {
@@ -33,8 +36,10 @@ public class CollectController {
     }
 
     @RequestMapping(value = "/deleteCollect", method = RequestMethod.GET)
-    public String DeleteCollect(int id) {
-        collectService.DeleteCollect(id);
+    public String DeleteCollect(int userid,int bookid) {
+
+        Collect collect=collectService.GetCollect(userid,bookid);
+        collectService.DeleteCollect(collect.getId());
         return "success";
     }
 

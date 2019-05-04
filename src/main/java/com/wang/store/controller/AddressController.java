@@ -26,7 +26,7 @@ public class AddressController {
         return addressService.GetAddressByUser(userid);
     }
 
-    @RequestMapping(value = "addAddress", method = RequestMethod.POST)
+    @RequestMapping(value = "/addAddress", method = RequestMethod.POST)
     public int AddAddress(@RequestBody JSONObject jsonObject) {
         Address address = new Address();
         int userid = Integer.parseInt(jsonObject.get("userid").toString());

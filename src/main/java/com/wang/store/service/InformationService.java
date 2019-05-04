@@ -29,9 +29,9 @@ public class InformationService {
     public void GetType(String type) {
         this.type = type;
         try {
-            Document document = Jsoup.connect("https://book.douban.com/tag/" + type+"?start=40&type=T").get();
+            Document document = Jsoup.connect("https://book.douban.com/tag/" + type+"?start=20&type=T").get();
             Elements linkelements = document.select("#subject_list").select("ul").select("li");
-            //System.out.println(linkelements.size());
+            System.out.println(linkelements.size());
             for (int i = 0; i < linkelements.size(); i++) {
                // System.out.println(linkelements.get(i).text());
                 String url = linkelements.get(i).select(".info").select("h2").select("a").attr("href");
@@ -47,7 +47,6 @@ public class InformationService {
     public void GetDetail(String type,String url) {
         Book book = new Book();
         try {
-            // Document document = Jsoup.parse(html);
             String regEx="[^0-9]";
             Pattern p = Pattern.compile(regEx);
             Matcher m = p.matcher(url);
@@ -97,13 +96,6 @@ public class InformationService {
                     isbn = infor[i + 1];
 
             }
-           /* System.out.println(author);
-            System.out.println(press);
-            System.out.println(subtitle);
-            System.out.println(presstime);
-            System.out.println(page);
-            System.out.println(price);
-            System.out.println(isbn);*/
 
 
             //content 内容简介
@@ -128,7 +120,7 @@ public class InformationService {
 
 
             book.setName(name);
-            book.setPicture(pic);
+            book.setPicture(pic.replace("https"," https://images.weserv.nl/?url=https"));
             book.setAuthor(author);
             book.setType(type);
             book.setIntroduction(content);

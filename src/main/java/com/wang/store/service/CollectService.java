@@ -22,6 +22,13 @@ public class CollectService {
     @Autowired
     BookDao bookDao;
 
+    public Collect GetCollect(int userid,int bookid){
+        Collect collect=new Collect();
+        collect.setUserid(userid);
+        collect.setBookid(bookid);
+        return collectDao.IfCollected(collect);
+    }
+
     public int IfCollected(Collect collect){
         if(collectDao.IfCollected(collect)!=null)
             return 1;//存在
@@ -32,7 +39,7 @@ public class CollectService {
         System.out.println(IfCollected(collect));
         if(IfCollected(collect)==1) return -1;//已存在
         collectDao.AddCollect(collect);
-        return collect.getBookid();
+        return collect.getId();
     }
 
     public void DeleteCollect(int id){
