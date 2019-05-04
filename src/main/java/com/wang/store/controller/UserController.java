@@ -1,8 +1,10 @@
 package com.wang.store.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wang.store.entity.User;
 import com.wang.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +21,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public Map verify(String name, String password) throws Exception {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Map verify(@RequestBody JSONObject jsonObject) throws Exception {
+        String name=jsonObject.get("name").toString();
+        String password =jsonObject.get("password").toString();
+
         Map<String, Object> map = new HashMap<String, Object>();
         User user = userService.IfExist(name);
         if(user==null){
