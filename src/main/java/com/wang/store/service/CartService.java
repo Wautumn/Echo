@@ -33,6 +33,11 @@ public class CartService {
 
     }
 
+    //从购物车中删除
+    public void Delete(int id){
+        cartDao.DeleteCart(id);
+    }
+
 
 
 
@@ -49,5 +54,9 @@ public class CartService {
         }
         return cartInfos;
 
+    }
+
+    public void ChangeNum(Cart cart){
+        cartDao.ChangeCartNum(cart);
     }
 }

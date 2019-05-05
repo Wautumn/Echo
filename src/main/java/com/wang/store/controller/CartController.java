@@ -40,4 +40,25 @@ public class CartController {
         return cartService.GetCartInfor(userid);
     }
 
+
+    @RequestMapping(value = "/deleteCart",method = RequestMethod.GET)
+    public String DeleteCart(int id){
+        cartService.Delete(id);
+        return "success";
+    }
+
+    @RequestMapping(value = "/changeCart",method = RequestMethod.POST)
+    public String ChangeCart(@RequestBody JSONObject jsonObject){
+        int userid=Integer.parseInt(jsonObject.get("userid").toString());
+        int bookid=Integer.parseInt(jsonObject.get("bookid").toString());
+        int num=Integer.parseInt(jsonObject.get("num").toString());
+        Cart cart=new Cart();
+        cart.setUserid(userid);
+        cart.setBookid(bookid);
+        cart.setNum(num);
+        cartService.ChangeNum(cart);
+        return "success";
+
+    }
+
 }

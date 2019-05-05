@@ -46,6 +46,17 @@
         where id=#{id}
     </delete>
 
+    <update id="ChangeCartNum" parameterType="com.wang.store.entity.Cart">
+        update cart
+        set num=#{num}
+        where userid=#{userid} and bookid=#{bookid}
+    </update>
+
+    <select id="GetCartIdByUserbook" parameterType="com.wang.store.entity.Cart" resultType="com.wang.store.entity.Cart">
+        select *  FROM  cart
+        where bookid=#{bookid} and userid=#{userid};
+    </select>
+
     <!--<select id="FindBookById" parameterType="Integer" resultType="com.wang.store.entity.Book">-->
     <!--select *-->
     <!--from Book-->

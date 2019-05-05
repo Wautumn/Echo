@@ -33,14 +33,15 @@ public class OrderController {
      */
     @RequestMapping(value = "/generateOrder",method = RequestMethod.POST)
     public int GenerateOrder(@RequestBody JSONObject jsonObject){
-        JSONArray carts=jsonObject.getJSONArray("carts");
+        JSONArray carts=jsonObject.getJSONArray("books");
         int[] array=new int[carts.size()];
         for(int i=0;i<carts.size();i++){
             array[i]=Integer.parseInt(carts.get(i).toString());
         }
         int userid=Integer.parseInt(jsonObject.get("userid").toString());
         int addressid=Integer.parseInt(jsonObject.get("addressid").toString());
-        int id=orderService.GnerateOrder(userid,array,addressid);
+        float price=Float.parseFloat(jsonObject.get("price").toString());
+        int id=orderService.GnerateOrder(userid,array,addressid,price);
         return id;
 
     }

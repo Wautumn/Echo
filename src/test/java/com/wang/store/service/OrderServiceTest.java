@@ -21,6 +21,6 @@ public class OrderServiceTest {
         int[] carts=new int[2];
         carts[0]=1;
         carts[1]=2;
-        orderService.GnerateOrder(1,carts,2);
+        orderService.GnerateOrder(1,carts,2,10);
     }
 }

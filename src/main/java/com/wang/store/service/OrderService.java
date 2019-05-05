@@ -39,20 +39,23 @@ public class OrderService {
     订单info表加入订单信息
     购物车删除相关记录
      */
-    public int GnerateOrder(int userid, int[] cartsid, int addressid) {
+    public int GnerateOrder(int userid, int[] cartsid, int addressid,float price) {
         Order order = new Order();
         Date nowTime = new Date();
-        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         order.setUserid(userid);
         order.setAddressid(addressid);
         order.setSettime(time.format(nowTime));
         order.setState(0);
-        float price = 0;
+       // float price = 0;
         for (int i = 0; i < cartsid.length; i++) {
-            Cart cart = cartDao.GetCartById(cartsid[i]);
+            Cart fin=new Cart();
+            fin.setUserid(userid);
+            fin.setBookid(cartsid[i]);
+            Cart cart = cartDao.GetCartIdByUserbook(fin);
             Book book = bookDao.FindBookById(cart.getBookid());
-            price += Float.parseFloat(book.getNowprice())*cart.getNum();
+          //  price += Float.parseFloat(book.getNowprice())*cart.getNum();
         }
 
         System.out.println(price);
@@ -61,20 +64,19 @@ public class OrderService {
 
 
         for (int i = 0; i < cartsid.length; i++) {
-            Cart cart = cartDao.GetCartById(cartsid[i]);
+            Cart fin=new Cart();
+            fin.setUserid(userid);
+            fin.setBookid(cartsid[i]);
+            Cart cart = cartDao.GetCartIdByUserbook(fin);
             OrderInfo orderInfo = new OrderInfo();
             orderInfo.setBookid(cart.getBookid());
             orderInfo.setNum(cart.getNum());
             orderInfo.setOrderid(order.getId());
-
             orderInfoDao.AddOrderInfo(orderInfo);
-
-            cartDao.DeleteCart(cartsid[i]);//删除购物车的信息
+            cartDao.DeleteCart(cart.getId());//删除购物车的信息
 
         }
         return order.getId();
-
-
     }
 
 

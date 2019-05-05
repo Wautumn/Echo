@@ -22,9 +22,13 @@ public interface CartDao {
 
     Cart IfExistCart(Cart cart);//当前用户购物车是否已经存在此书
 
-    void UpdateCart(Cart cart);//修改购物车商品数量
+    void UpdateCart(Cart cart);//修改购物车商品数量,在原有的基础上修改
 
     void CleanCart(int userid);
 
     void DeleteCart(int id);//删除这条记录
+
+    void ChangeCartNum(Cart cart);//直接修改
+
+    Cart GetCartIdByUserbook(Cart cart);
 }
